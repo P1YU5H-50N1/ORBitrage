@@ -1,0 +1,9 @@
+v20/  
+v20-python-samples/  
+prices/  
+__pycache__  
+.vscode/  
+playground.py  
+playgrd.ipynb  
+.v20.conf  
+config.py
