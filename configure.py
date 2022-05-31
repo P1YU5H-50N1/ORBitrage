@@ -62,7 +62,6 @@ class Config(object):
         try:
             with open(os.path.expanduser(path)) as f:
                 y = yaml.load(f, Loader=yaml.FullLoader)
-                print(y)
                 self.hostname = y.get("hostname", self.hostname)
                 self.streaming_hostname = y.get("streaming_hostname",
                                                 self.streaming_hostname)
@@ -77,19 +76,17 @@ class Config(object):
                                              self.datetime_format)
         except Exception:
             raise ConfigPathError(path)
-    
+
     def create_context(self):
         """
         Initialize an API context based on the Config instance
         """
-        ctx = v20.Context(
-            self.hostname,
-            self.port,
-            self.ssl,
-            application="sample_code",
-            token=self.token,
-            datetime_format=self.datetime_format
-        )
+        ctx = v20.Context(self.hostname,
+                          self.port,
+                          self.ssl,
+                          application="sample_code",
+                          token=self.token,
+                          datetime_format=self.datetime_format)
 
         return ctx
 
@@ -110,14 +107,12 @@ class Config(object):
             self.ssl,
             # application="sample_code",
             token=self.token,
-            datetime_format=self.datetime_format
-        )
+            datetime_format=self.datetime_format)
         # print(ctx.pricing.stream(accountID=self.accounts[0],instruments='USD_EUR'))
-
 
         return ctx
 
-        
+
 class ConfigPathError(Exception):
     """
     Exception that indicates that the path specified for a v20 config file
